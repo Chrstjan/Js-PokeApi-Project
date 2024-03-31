@@ -3,7 +3,6 @@ const app = document.getElementById("app");
 
 let allPokemon = null;
 let randFeatuedPokemon = [];
-let clickedPokemon = [];
 
 //Calling functions
 function initApp() {
@@ -62,9 +61,7 @@ function recivedPokemonData(pokemonData) {
 
 function recivedClickedPokemon(pokemonData) {
   //   console.log(pokemonData);
-  clickedPokemon.push(pokemonData);
-
-  //buildPokemoncard(clickedPokemon);
+  buildPokemoncard(pokemonData);
 }
 
 function pokecardCallback(clickedPokecard) {
@@ -90,6 +87,32 @@ function buildFeaturedPokemons(pokemons) {
   });
 
   app.appendChild(pokemonCardContainer);
+}
+
+function buildPokemoncard(pokemon) {
+  console.log(pokemon);
+  let pokemonType = pokemon.types
+    .map((type) => `<button>${type.type.name}</button>`)
+    .join("");
+  let pokemonCard = `
+    <figure>
+        <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}"/>
+        <figcaption>
+            <header>
+                <h3>${pokemon.name}</h3>
+            </header>
+            <div class="pokemon-stats">
+                <span class="pokemon-type">
+                    <header>
+                        <h4>Type:</h4>
+                    </header>
+                    ${pokemonType}
+                </span>
+            </div>
+        </figcaption>
+    </figure>`;
+
+  app.innerHTML = pokemonCard;
 }
 
 //#endregion view code
