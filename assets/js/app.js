@@ -1,4 +1,5 @@
 //#region GLOBALS
+const app = document.getElementById("app");
 
 //#endregion GLOBALS
 
