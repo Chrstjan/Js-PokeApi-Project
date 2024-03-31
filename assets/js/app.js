@@ -3,6 +3,7 @@ const app = document.getElementById("app");
 
 let allPokemon = null;
 let randFeatuedPokemon = [];
+let clickedPokemon = [];
 
 //Calling functions
 function initApp() {
@@ -27,6 +28,22 @@ function getPokemonData() {
       console.log("Error fetching pokemon data:", error);
     });
 }
+
+function getClickedPokemonData(pokemonId) {
+  fetch(`${pokemonId}`)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Network response was not ok. Could not find pokemon");
+      }
+      return res.json();
+    })
+    .then((json) => {
+      recivedClickedPokemon(json);
+    })
+    .catch((error) => {
+      console.log("could not find pokemon:", error);
+    });
+}
 //#endregion model code
 
 //#region controller code
@@ -42,6 +59,18 @@ function recivedPokemonData(pokemonData) {
   //   console.log(randFeatuedPokemon);
   buildFeaturedPokemons(randFeatuedPokemon);
 }
+
+function recivedClickedPokemon(pokemonData) {
+  //   console.log(pokemonData);
+  clickedPokemon.push(pokemonData);
+
+  //buildPokemoncard(clickedPokemon);
+}
+
+function pokecardCallback(clickedPokecard) {
+  //   console.log(clickedPokecard);
+  getClickedPokemonData(clickedPokecard);
+}
 //#endregion controller code
 
 //#region view code
@@ -51,7 +80,7 @@ function buildFeaturedPokemons(pokemons) {
 
   pokemons.forEach((pokemon) => {
     let pokemonCard = `
-    <figure class="pokemon-card">
+    <figure class="pokemon-card" onclick="pokecardCallback('${pokemon.url}')">
         <header>
             <h3>${pokemon.name}</h3>
         </header>
