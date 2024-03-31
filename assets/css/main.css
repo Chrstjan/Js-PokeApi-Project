@@ -1,0 +1,21 @@
+#appHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-header hgroup h1 {
+  padding-bottom: 0.6rem;
+}
+
+.app-header hgroup h1,
+.app-header hgroup h4 {
+  margin: 0;
+  text-align: center;
+}
+
+#appHeader #searchBar {
+  margin-top: 0.7rem;
+  width: 60%;
+}
