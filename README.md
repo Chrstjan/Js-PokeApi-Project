@@ -1,2 +1,4 @@
 # Js-Boilerplate
-Boilerplate 2.0
+Pokemon info from pokeapi
+
+Page: 

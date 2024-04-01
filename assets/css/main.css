@@ -1,0 +1,44 @@
+#appHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-header hgroup h1 {
+  padding-bottom: 0.6rem;
+}
+
+.app-header hgroup h1,
+.app-header hgroup h4 {
+  margin: 0;
+  text-align: center;
+}
+
+#appHeader #searchBar {
+  margin-top: 0.7rem;
+  width: 60%;
+}
+
+.hidden {
+  display: none;
+}
+
+#app .pokecard {
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.pokecard figcaption .pokemon-stats .pokemon-type header,
+.pokemon-stats .pokemon-stat header,
+.pokemon-stats .pokemon-xp header,
+.pokemon-stats .pokemon-abilities header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
