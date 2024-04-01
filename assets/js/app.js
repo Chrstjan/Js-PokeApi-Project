@@ -69,11 +69,11 @@ function pokecardCallback(clickedPokecard) {
   getClickedPokemonData(clickedPokecard);
 }
 
-function toggleView() {
-  let listElement = document.querySelector(".pokemon-stats");
+function toggleView(containerId) {
+  let listElement = document.getElementById(containerId);
 
   listElement.classList.toggle("hidden");
-  console.log("class toggle");
+  // console.log("class toggle");
 }
 //#endregion controller code
 
@@ -114,7 +114,7 @@ function buildPokemoncard(pokemon) {
     .join("");
 
   let pokemonCard = `
-    <figure>
+    <figure class="pokecard">
         <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}"/>
         <figcaption>
             <header>
@@ -124,33 +124,41 @@ function buildPokemoncard(pokemon) {
                 <span class="pokemon-type">
                     <header>
                         <h4>Type</h4>
-                        <button onclick="toggleView()">&darr;</button>
+                        <button onclick="toggleView('pokemonType')">&darr;</button>
                     </header>
-                    ${pokemonType}
+                    <div id="pokemonType">
+                      ${pokemonType}
+                    </div>
                 </span>
 
                 <span class="pokemon-stat">
                   <header>
                     <h4>Stats</h4>
-                    &darr;
+                    <button onclick="toggleView('pokemonStats')">&darr;</button>
                   </header>
-                  ${pokemonStats}
+                  <div id="pokemonStats">
+                    ${pokemonStats}
+                  </div>
                 </span>
 
                 <span class="pokemon-xp">
                   <header>
                     <h4>Base Xp</h4>
-                    &darr;
+                    <button onclick="toggleView('pokemonXp')">&darr;</button>
                   </header>
-                  <p>${pokemon.base_experience}</p>
+                  <div id="pokemonXp">
+                    <p>${pokemon.base_experience}</p>
+                  </div>
                 </span>
 
                 <span class="pokemon-abilities">
                   <header>
                     <h4>Abilities</h4>
-                    &darr;
+                    <button onclick="toggleView('pokemonAbilities')">&darr;</button>
                   </header>
-                  ${pokemonAbilities}
+                  <div id="pokemonAbilities">
+                    ${pokemonAbilities}
+                  </div>
                 </span>
             </div>
         </figcaption>
