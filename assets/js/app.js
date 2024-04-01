@@ -68,6 +68,13 @@ function pokecardCallback(clickedPokecard) {
   //   console.log(clickedPokecard);
   getClickedPokemonData(clickedPokecard);
 }
+
+function toggleView() {
+  let listElement = document.querySelector(".pokemon-stats");
+
+  listElement.classList.toggle("hidden");
+  console.log("class toggle");
+}
 //#endregion controller code
 
 //#region view code
@@ -94,6 +101,18 @@ function buildPokemoncard(pokemon) {
   let pokemonType = pokemon.types
     .map((type) => `<button>${type.type.name}</button>`)
     .join("");
+
+  let pokemonStats = pokemon.stats
+    .map(
+      (pokemon) =>
+        `<ul><h5>${pokemon.stat.name}</h5><li>${pokemon.base_stat}</li></ul>`
+    )
+    .join("");
+
+  let pokemonAbilities = pokemon.abilities
+    .map((pokemon) => `<p>${pokemon.ability.name}</p>`)
+    .join("");
+
   let pokemonCard = `
     <figure>
         <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}"/>
@@ -104,9 +123,34 @@ function buildPokemoncard(pokemon) {
             <div class="pokemon-stats">
                 <span class="pokemon-type">
                     <header>
-                        <h4>Type:</h4>
+                        <h4>Type</h4>
+                        <button onclick="toggleView()">&darr;</button>
                     </header>
                     ${pokemonType}
+                </span>
+
+                <span class="pokemon-stat">
+                  <header>
+                    <h4>Stats</h4>
+                    &darr;
+                  </header>
+                  ${pokemonStats}
+                </span>
+
+                <span class="pokemon-xp">
+                  <header>
+                    <h4>Base Xp</h4>
+                    &darr;
+                  </header>
+                  <p>${pokemon.base_experience}</p>
+                </span>
+
+                <span class="pokemon-abilities">
+                  <header>
+                    <h4>Abilities</h4>
+                    &darr;
+                  </header>
+                  ${pokemonAbilities}
                 </span>
             </div>
         </figcaption>
